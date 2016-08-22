@@ -55,4 +55,48 @@ class CheckSum
 
         return false;
     }
+
+    /**
+     * Generates a checksum based on Damm Algorithm and returns the new value with checksum
+     * @param $id
+     * @param bool $stripNonNumeric
+     * @return float
+     * @throws \Exception
+     */
+    public static function dammGenerator($id, $stripNonNumeric = false)
+    {
+        if($stripNonNumeric){
+            $id = preg_replace('/[^0-9]/', '', $id);
+        }
+
+        if(!is_numeric($id)){
+            throw new \Exception('Invalid ID specified. ID must be numeric');
+        }
+
+        $checksum = DammAlgorithm::encode($id);
+
+        $reference = $id . $checksum;
+
+        return $reference;
+    }
+
+    /**
+     * Validates the value containing the checksum against Damm Algorithm
+     * @param $value
+     * @param bool $stripNonNumeric
+     * @return bool
+     * @throws \Exception
+     */
+    public static function dammValidator($value, $stripNonNumeric = false)
+    {
+        if($stripNonNumeric){
+            $value = preg_replace('/[^0-9]/', '', $value);
+        }
+
+        if(!is_numeric($value)){
+            throw new \Exception('Invalid ID specified. ID must be numeric');
+        }
+
+        return DammAlgorithm::check($value);
+    }
 }

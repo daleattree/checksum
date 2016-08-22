@@ -22,4 +22,24 @@ class generatorTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $generatedValue);
     }
+
+    public function testDammNumericGeneratedValue(){
+        $expected = 5724;
+
+        $id = 572;
+
+        $generatedValue = \daleattree\CheckSum\CheckSum::dammGenerator($id);
+
+        $this->assertEquals($expected, $generatedValue);
+    }
+
+    public function testDammNonNumericGeneratedValue(){
+        $expected = 5724;
+
+        $id = 'B000572';
+
+        $generatedValue = \daleattree\CheckSum\CheckSum::dammGenerator($id, true);
+
+        $this->assertEquals($expected, $generatedValue);
+    }
 }

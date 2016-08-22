@@ -18,4 +18,20 @@ class validatorTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($result);
     }
+
+    public function testDammNumericGeneratedValue(){
+        $value = 5724;
+
+        $result = \daleattree\CheckSum\CheckSum::mod9710Validator($value);
+
+        $this->assertTrue($result);
+    }
+
+    public function testDammNonNumericGeneratedValue(){
+        $value = 'B0005724';
+
+        $result = \daleattree\CheckSum\CheckSum::dammValidator($value, true);
+
+        $this->assertTrue($result);
+    }
 }
