@@ -3,22 +3,22 @@
 
 class generatorTest extends PHPUnit_Framework_TestCase
 {
-    public function testNumericGeneratedValue(){
+    public function testMod9710NumericGeneratedValue(){
         $expected = 815171511;
 
         $id = 8151715;
 
-        $generatedValue = \daleattree\CheckSum\CheckSum::mod97_10_generator($id);
+        $generatedValue = \daleattree\CheckSum\CheckSum::mod9710Generator($id);
 
         $this->assertEquals($expected, $generatedValue);
     }
 
-    public function testNonNumericGeneratedValue(){
+    public function testMod9710NonNumericGeneratedValue(){
         $expected = 815171511;
 
         $id = 'A08151715';
 
-        $generatedValue = \daleattree\CheckSum\CheckSum::mod97_10_generator($id, true);
+        $generatedValue = \daleattree\CheckSum\CheckSum::mod9710Generator($id, true);
 
         $this->assertEquals($expected, $generatedValue);
     }

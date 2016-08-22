@@ -14,7 +14,7 @@ class CheckSum
      * @throws \Exception
      * @see https://usersite.datalab.eu/printclass.aspx?type=wiki&id=91772
      */
-    public static function mod97_10_generator($id, $stripNonNumeric = false)
+    public static function mod9710Generator($id, $stripNonNumeric = false)
     {
         if($stripNonNumeric){
             $id = preg_replace('/[^0-9]/', '', $id);
@@ -26,8 +26,6 @@ class CheckSum
 
         $value = $id * self::MOD97_10_MULTIPLIER;
         $checksum = (self::MOD97_10_MODULUS + 1) - ($value % self::MOD97_10_MODULUS);
-
-        echo $value . ' : ' . $checksum . PHP_EOL;
 
         $reference = $value + $checksum;
 
@@ -41,7 +39,7 @@ class CheckSum
      * @return bool
      * @throws \Exception
      */
-    public static function mod97_10_validator($value, $stripNonNumeric = false)
+    public static function mod9710Validator($value, $stripNonNumeric = false)
     {
         if($stripNonNumeric){
             $value = preg_replace('/[^0-9]/', '', $value);
