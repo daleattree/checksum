@@ -27,7 +27,7 @@ class CheckSum
         $value = $id * self::MOD97_10_MULTIPLIER;
         $checksum = (self::MOD97_10_MODULUS + 1) - ($value % self::MOD97_10_MODULUS);
 
-        $reference = $value + $checksum;
+        $reference = $id . str_pad($checksum, 2, 0, STR_PAD_LEFT);
 
         return $reference;
     }
